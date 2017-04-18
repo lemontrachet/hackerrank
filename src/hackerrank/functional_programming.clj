@@ -106,4 +106,21 @@
             (recur new (inc n))
         ))))
 
-(println (rotate-str "hello"))
+;(println (rotate-str "hello"))
+
+
+(defmulti do-maths
+          (fn [args]
+            (:op-type args)))
+
+(defmethod do-maths :adding
+  [args]
+  (+ (:num1 args) (:num2 args)))
+
+(defmethod do-maths :multiplying
+  [args]
+  (* (:num1 args) (:num2 args)))
+
+(println (do-maths {:op-type :multiplying
+           :num1 5
+           :num2 10}))
